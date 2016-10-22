@@ -1,6 +1,6 @@
-module LightsRun where
+module TrafficLightsRun where
 import HDL.Hydra.Core.Lib
-import Lights
+import TrafficLights
 
 main :: IO ()
 main =  do
@@ -13,21 +13,23 @@ testdata1 =
 -----------------------------------
 -- rst     light
 -----------------------------------
-  [[1], -- green
-   [0], -- green
-   [0], -- green
-   [0], -- amber
-   [0], -- red
-   [0], -- red
-   [0], -- red
-   [0], -- red
-   [0], -- amber
+  [[1], -- undefined
    [0], -- green
    [0], -- green
    [0], -- green
    [0], -- amber
    [0], -- red
-   [1], -- green
+   [0], -- red
+   [0], -- red
+   [0], -- red
+   [0], -- amber
+   [0], -- green
+   [0], -- green
+   [0], -- green
+   [0], -- amber
+   [1], -- red
+   [0], -- green
+   [0], -- green
    [0]] -- green
 
 runLights :: [[Int]] -> IO ()
@@ -49,30 +51,29 @@ runLights input = runAllInput input output
 
 testdata2 :: [[Int]]
 testdata2 =
------------------------------------
--- rst     light
------------------------------------
-  [[1, 0], -- green
-   [0, 0], -- green
-   [0, 0], -- green
-   [0, 1], -- amber
-   [0, 1], -- red
-   [0, 1], -- red
-   [0, 0], -- red
-   [1, 0], -- red
-   [0, 0], -- red
-   [0, 0], -- red
-   [0, 0], -- red
-   [0, 0], -- red
-   [0, 0], -- red
-   [0, 0], -- red
-   [0, 1], -- red
-   [0, 0], -- red
-   [0, 0], -- red
-   [0, 0], -- red
-   [0, 0], -- red
-   [0, 0], -- red
-   [0, 0]]
+--------------------------------------------------
+-- rst        light            pedestrian light --
+--------------------------------------------------
+  [[1, 0], -- undefined        undefined
+   [0, 0], -- green            wait
+   [0, 0], -- green            wait
+   [0, 1], -- green (request!) wait
+   [0, 1], -- amber            wait
+   [0, 1], -- red              *walk*
+   [1, 0], -- red   (reset!)   *walk*
+   [0, 0], -- green            wait
+   [0, 0], -- green            wait
+   [0, 0], -- green            wait
+   [0, 0], -- green            wait
+   [0, 1], -- green (request!) wait
+   [0, 0], -- amber            wait
+   [0, 0], -- red              *walk*
+   [0, 0], -- red              *walk*
+   [0, 0], -- red              *walk*
+   [0, 0], -- amber            wait
+   [0, 0], -- green            wait
+   [0, 0], -- green            wait
+   [0, 0]] -- green            wait
 
 runLights2 :: [[Int]] -> IO ()
 runLights2 input = runAllInput input output
@@ -93,4 +94,3 @@ runLights2 input = runAllInput input output
        string " wait=", bit wait,
        string " walk=", bit walk,
        string " walkCount=", bindec 1 walkCount]
-
