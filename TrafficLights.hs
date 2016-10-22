@@ -1,4 +1,4 @@
-module Lights where
+module TrafficLights where
 import HDL.Hydra.Core.Lib
 import HDL.Hydra.Circuits.Combinational
 import HDL.Hydra.Circuits.Register
@@ -27,17 +27,17 @@ lights rst = (g, a, r)
 
 count4mod9 reset = [x0,x1,x2,x3]
   where
-    x0 = dff (mux1 (or2 reset xis9) y0 zero)
-    x1 = dff (mux1 (or2 reset xis9) y1 zero)
-    x2 = dff (mux1 (or2 reset xis9) y2 zero)
-    x3 = dff (mux1 (or2 reset xis9) y3 zero)
+    x0 = dff (mux1 (or2 reset xis8) y0 zero)
+    x1 = dff (mux1 (or2 reset xis8) y1 zero)
+    x2 = dff (mux1 (or2 reset xis8) y2 zero)
+    x3 = dff (mux1 (or2 reset xis8) y3 zero)
 
     (c0,y0) = halfAdd x0 c1
     (c1,y1) = halfAdd x1 c2
     (c2,y2) = halfAdd x2 c3
     (c3,y3) = halfAdd x3 one
 
-    xis9 = x0
+    xis8 = x0
 
 -- Counter-light correspondance table:
 ---------------------------
@@ -95,6 +95,3 @@ inc16 [x0,x1,x2,x3,x4,x5,x6,x7,x8,x9,x10,x11,x12,x13,x14,x15] = [y0,y1,y2,y3,y4,
     (c13,y13) = halfAdd x13 c14
     (c14,y14) = halfAdd x14 c15
     (c15,y15) = halfAdd x15 one
-     
-
-
