@@ -72,8 +72,8 @@ testdata2 =
    [0, 0],        -- red              *walk*
    [0, 0],        -- amber            wait
    [0, 0],        -- green            wait
-   [0, 0],        -- green            wait
-   [0, 0]]        -- green            wait
+   [0, 1],        -- green            wait
+   [0, 0]]        -- amber            wait
 
 runLights2 :: [[Int]] -> IO ()
 runLights2 input = runAllInput input output
