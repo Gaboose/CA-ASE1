@@ -51,29 +51,29 @@ runLights input = runAllInput input output
 
 testdata2 :: [[Int]]
 testdata2 =
---------------------------------------------------
--- rst        light            pedestrian light --
---------------------------------------------------
-  [[1, 0], -- undefined        undefined
-   [0, 0], -- green            wait
-   [0, 0], -- green            wait
-   [0, 1], -- green (request!) wait
-   [0, 1], -- amber            wait
-   [0, 1], -- red              *walk*
-   [1, 0], -- red   (reset!)   *walk*
-   [0, 0], -- green            wait
-   [0, 0], -- green            wait
-   [0, 0], -- green            wait
-   [0, 0], -- green            wait
-   [0, 1], -- green (request!) wait
-   [0, 0], -- amber            wait
-   [0, 0], -- red              *walk*
-   [0, 0], -- red              *walk*
-   [0, 0], -- red              *walk*
-   [0, 0], -- amber            wait
-   [0, 0], -- green            wait
-   [0, 0], -- green            wait
-   [0, 0]] -- green            wait
+---------------------------------------------------------
+-- rst walkReq       light            pedestrian light --
+---------------------------------------------------------
+  [[1, 0],        -- undefined        undefined
+   [0, 0],        -- green            wait
+   [0, 0],        -- green            wait
+   [0, 1],        -- green (request!) wait
+   [0, 1],        -- amber            wait
+   [0, 1],        -- red              *walk*
+   [1, 0],        -- red   (reset!)   *walk*
+   [0, 0],        -- green            wait
+   [0, 0],        -- green            wait
+   [0, 0],        -- green            wait
+   [0, 0],        -- green            wait
+   [0, 1],        -- green (request!) wait
+   [0, 0],        -- amber            wait
+   [0, 0],        -- red              *walk*
+   [0, 0],        -- red              *walk*
+   [0, 0],        -- red              *walk*
+   [0, 0],        -- amber            wait
+   [0, 0],        -- green            wait
+   [0, 0],        -- green            wait
+   [0, 0]]        -- green            wait
 
 runLights2 :: [[Int]] -> IO ()
 runLights2 input = runAllInput input output
